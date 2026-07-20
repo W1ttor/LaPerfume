@@ -1,6 +1,6 @@
 package com.abraao.laperfume.model.product;
 
-import com.abraao.laperfume.model.cart.Cart;
+import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.utils.Enum.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,22 +26,17 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @ManyToMany
-    @JoinTable(
-            name = "prod_cart",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "cart_id")
-    )
-    private Set<Cart> cart;
+    @ManyToMany(mappedBy = "products")
+    private Set<Profile> profiles;
 
-    public void addCart(Cart cart) {
-        this.cart.add(cart);
-        cart.getProduct().add(this);
+    public void addProductToProfile(Profile profile) {
+        this.profiles.add(profile);
+        profile.getProducts().add(this);
     }
 
-    public void removeCart(Cart cart) {
-        this.cart.remove(cart);
-        cart.getProduct().remove(this);
+    public void removeProductFromProfile(Profile profile) {
+        this.profiles.remove(profile);
+        profile.getProducts().remove(this);
     }
 
     @ManyToMany

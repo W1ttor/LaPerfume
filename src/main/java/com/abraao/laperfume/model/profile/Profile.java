@@ -1,10 +1,12 @@
 package com.abraao.laperfume.model.profile;
 
 import com.abraao.laperfume.model.address.Address;
-import com.abraao.laperfume.model.cart.Cart;
+import com.abraao.laperfume.model.product.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Getter @NoArgsConstructor
 @Entity
@@ -21,9 +23,11 @@ public class Profile {
     @OneToOne
     private Address address;
 
-    @OneToOne
-    private Cart cart;
-
-
-
+    @ManyToMany
+    @JoinTable(
+            name = "cart_products",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> products;
 }
