@@ -1,6 +1,5 @@
 package com.abraao.laperfume.model.profile;
 
-import com.abraao.laperfume.model.address.Address;
 import com.abraao.laperfume.model.product.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,8 +18,6 @@ public class Profile {
     private String email;
     private Integer cpf;
     private Integer birthYear;
-
-    @OneToOne
     private Address address;
 
     @ManyToMany

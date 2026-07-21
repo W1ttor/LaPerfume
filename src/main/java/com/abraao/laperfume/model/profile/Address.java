@@ -1,22 +1,17 @@
-package com.abraao.laperfume.model.address;
+package com.abraao.laperfume.model.profile;
 
-import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.utils.Enum.EnumLocal;
 import com.abraao.laperfume.utils.Enum.States;
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
-@Entity
+@Embeddable
 @Getter @AllArgsConstructor @NoArgsConstructor
 public class Address {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
 
     private String fullName;
 
@@ -37,10 +32,5 @@ public class Address {
 
     @Enumerated(EnumType.STRING)
     private EnumLocal ResidentialOrCommercial;
-
-    @OneToOne
-    private Profile profile;
-
-
 
 }
