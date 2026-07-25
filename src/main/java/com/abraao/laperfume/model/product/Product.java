@@ -4,18 +4,22 @@ import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @Builder
+@Data
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     private String name;
     private String description;
     private String image;
