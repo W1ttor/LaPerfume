@@ -3,6 +3,7 @@ package com.abraao.laperfume.model.product.service.impl;
 import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
 import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
 import com.abraao.laperfume.infra.product.repository.ProductRepository;
+import com.abraao.laperfume.infra.profile.repository.ProfileRepository;
 import com.abraao.laperfume.model.product.Product;
 import com.abraao.laperfume.model.product.service.ProductService;
 import org.modelmapper.ModelMapper;
@@ -17,13 +18,14 @@ import java.util.UUID;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-
+    private final ProfileRepository profileRepository;
     private final ModelMapper mapper;
 
     @Autowired
-    ProductServiceImpl(ProductRepository productRepository,  ModelMapper mapper) {
+    ProductServiceImpl(ProductRepository productRepository,  ModelMapper mapper, ProfileRepository profileRepository) {
         this.productRepository = productRepository;
         this.mapper = mapper;
+        this.profileRepository = profileRepository;
     }
 
     @Override
@@ -71,5 +73,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(ProductReqDto productReqDto) {
+    }
+
+    @Override
+    public ProductResDto addProductToProfile(String idProduct, String idProfile) {
+
+        Product product = productRepository.findById(UUID.fromString(idProduct)).
+                orElseThrow();
+
+        product.addProductToProfile(profileRepository.findById(idProfile).orElseThrow());
+
+        productRepository.save(product);
+        return mapper.map(product, ProductResDto.class);
     }
 }

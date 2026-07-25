@@ -12,4 +12,6 @@ public interface ProductService {
     ProductResDto getProductById(String id);
     List<ProductResDto> findAllProducts();
     void deleteProduct(ProductReqDto productReqDto);
+
+    ProductResDto addProductToProfile(String id, String idProduct);
 }

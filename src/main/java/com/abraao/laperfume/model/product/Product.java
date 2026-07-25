@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class Product {
     private Gender gender;
 
     @ManyToMany(mappedBy = "products")
-    private Set<Profile> profiles;
+    private List<Profile> profiles;
 
     public void addProductToProfile(Profile profile) {
         this.profiles.add(profile);
