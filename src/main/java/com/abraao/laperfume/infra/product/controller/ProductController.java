@@ -4,12 +4,15 @@ import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
 import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
 import com.abraao.laperfume.model.product.Product;
 import com.abraao.laperfume.model.product.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/product")
+@Tag(name = "Produtos")
 public class ProductController {
 
     private final ProductService productService;
@@ -36,6 +39,12 @@ public class ProductController {
     @PutMapping("/{id}")
     public ProductResDto update(@PathVariable String id, @RequestBody ProductReqDto productReqDto) {
         return productService.updateProduct(id, productReqDto);
+    }
+
+    @Operation(description = "Adicionar produto ao Profile")
+    @PostMapping("/{id}")
+    public ProductResDto addProduct(@PathVariable String id, String idProfile) {
+        return productService.addProductToProfile(id, idProfile);
     }
 
 

@@ -1,5 +1,6 @@
 package com.abraao.laperfume.model.profile.Service.impl;
 
+import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
 import com.abraao.laperfume.infra.profile.dto.request.ProfileReqDto;
 import com.abraao.laperfume.infra.profile.dto.response.ProfileResDto;
 import com.abraao.laperfume.infra.profile.repository.ProfileRepository;
@@ -65,6 +66,19 @@ public class ProfileServiceImpl implements ProfileService {
         profileRepository.save(profile);
 
         return model.map(profile, ProfileResDto.class);
+    }
+
+    @Override
+    public List<ProductResDto> findAllProductProfile(String id) {
+
+        Profile profile = profileRepository.findById(id)
+                .orElseThrow();
+
+        return profile.getProducts()
+                .stream()
+                .map(product -> model.map(product, ProductResDto.class))
+                .toList();
+
     }
 
     @Override

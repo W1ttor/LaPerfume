@@ -8,7 +8,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data @Builder
@@ -33,8 +34,8 @@ public class Profile {
     @Column(unique = true)
     private String cpf;
 
-    @NotBlank
-    private String birthYear;
+    @NotNull
+    private LocalDate birthYear;
 
     private Address address;
 
@@ -48,7 +49,7 @@ public class Profile {
             joinColumns = @JoinColumn(name = "profile_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private Set<Product> products;
+    private List<Product> products;
 
     public Profile() {
 
