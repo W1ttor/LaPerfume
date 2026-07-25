@@ -17,6 +17,6 @@ public class FragranceCategory {
 
     private String name;
 
-    @ManyToMany(mappedBy = "fragrancecategory")
+    @ManyToMany(mappedBy = "fragranceCategory")
     private Set<Product> products = new HashSet<>();
 }

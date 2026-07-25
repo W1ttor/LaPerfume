@@ -1,7 +1,7 @@
 package com.abraao.laperfume.model.product;
 
 import com.abraao.laperfume.model.profile.Profile;
-import com.abraao.laperfume.utils.Enum.Gender;
+import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

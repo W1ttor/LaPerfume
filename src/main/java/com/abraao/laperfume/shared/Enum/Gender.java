@@ -1,4 +1,4 @@
-package com.abraao.laperfume.utils.Enum;
+package com.abraao.laperfume.shared.Enum;
 
 public enum Gender {
     MALE("Male"),
