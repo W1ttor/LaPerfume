@@ -5,9 +5,13 @@ import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
 import com.abraao.laperfume.infra.product.repository.ProductRepository;
 import com.abraao.laperfume.infra.profile.repository.ProfileRepository;
 import com.abraao.laperfume.model.product.Product;
+import com.abraao.laperfume.model.product.Specification.ProductSpec;
 import com.abraao.laperfume.model.product.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,8 +68,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResDto> findAllProducts() {
-        return productRepository.findAll()
+    public List<ProductResDto> findAllProducts(String name , Pageable pageable) {
+
+        Specification<Product> spec = Specification.where(ProductSpec.containsName(name));
+
+        return productRepository.findAll(spec, pageable)
                 .stream()
                 .map(product -> mapper.map(product, ProductResDto.class))
                 .toList();
@@ -86,4 +93,6 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
         return mapper.map(product, ProductResDto.class);
     }
+
+
 }

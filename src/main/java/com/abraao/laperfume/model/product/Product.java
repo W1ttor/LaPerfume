@@ -50,7 +50,7 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "fragancecategory_id")
     )
-    private Set<FragranceCategory> fragranceCategory;
+    private List<FragranceCategory> fragranceCategory;
 
     public void addFragranceCategory(FragranceCategory fragranceCategory) {
         this.fragranceCategory.add(fragranceCategory);
@@ -60,24 +60,6 @@ public class Product {
     public void removeFragranceCategory(FragranceCategory fragranceCategory) {
         this.fragranceCategory.remove(fragranceCategory);
         fragranceCategory.getProducts().remove(this);
-    }
-
-    @ManyToMany
-    @JoinTable(
-            name = "prod_line",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "fraganceline_id")
-    )
-    private Set<FragranceLine> fragranceLine;
-
-    public void addFragranceLine(FragranceLine fragranceLine) {
-        this.fragranceLine.add(fragranceLine);
-        fragranceLine.getProducts().add(this);
-    }
-
-    public void removeFragranceLine(FragranceLine fragranceLine) {
-        this.fragranceLine.remove(fragranceLine);
-        fragranceLine.getProducts().remove(this);
     }
 
 }

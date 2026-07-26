@@ -1,9 +1,11 @@
 package com.abraao.laperfume.model.product;
 
+import com.abraao.laperfume.shared.Enum.FragranceOrLine;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,6 +19,8 @@ public class FragranceCategory {
 
     private String name;
 
+    private FragranceOrLine fragranceOrLine;
+
     @ManyToMany(mappedBy = "fragranceCategory")
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products;
 }
