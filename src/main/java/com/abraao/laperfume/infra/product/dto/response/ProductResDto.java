@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ProductResDto {
 
@@ -34,6 +36,4 @@ public class ProductResDto {
     @Enumerated(EnumType.STRING)
     @NotBlank @NotNull
     private Gender gender;
-
-
 }

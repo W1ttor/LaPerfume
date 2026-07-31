@@ -2,12 +2,18 @@ package com.abraao.laperfume.model.product.service.impl;
 
 import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
 import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
+import com.abraao.laperfume.infra.product.dto.response.ProductSearch;
 import com.abraao.laperfume.infra.product.repository.ProductRepository;
 import com.abraao.laperfume.infra.profile.repository.ProfileRepository;
+import com.abraao.laperfume.model.product.FragranceCategory;
 import com.abraao.laperfume.model.product.Product;
+import com.abraao.laperfume.model.product.Specification.ProductSpecImpl;
+import com.abraao.laperfume.model.product.service.FragranceCategoryService;
 import com.abraao.laperfume.model.product.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,13 +25,17 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProfileRepository profileRepository;
+    private final FragranceCategoryService fragranceCategoryService;
     private final ModelMapper mapper;
+    private final ProductSpecImpl productSpec;
 
     @Autowired
-    ProductServiceImpl(ProductRepository productRepository,  ModelMapper mapper, ProfileRepository profileRepository) {
+    ProductServiceImpl(ProductRepository productRepository,  ModelMapper mapper, ProfileRepository profileRepository, FragranceCategoryService fragranceCategoryService, ProductSpecImpl productSpec) {
         this.productRepository = productRepository;
         this.mapper = mapper;
         this.profileRepository = profileRepository;
+        this.fragranceCategoryService = fragranceCategoryService;
+        this.productSpec = productSpec;
     }
 
     @Override
@@ -39,6 +49,13 @@ public class ProductServiceImpl implements ProductService {
                 .quantity(productReqDto.getQuantity())
                 .gender(productReqDto.getGender())
                 .build();
+
+        if (!productReqDto.getIdCategory().isEmpty()) {
+            productReqDto.getIdCategory().forEach(
+                    id -> {
+                        product.addFragranceCategory(mapper.map(fragranceCategoryService.findCategoryById(id),  FragranceCategory.class));
+                    });
+        }
 
         productRepository.save(product);
 
@@ -64,8 +81,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResDto> findAllProducts() {
-        return productRepository.findAll()
+    public List<ProductResDto> findAllProducts(ProductSearch productSearch, Pageable pageable) {
+
+        Specification<Product> spec = Specification.where(productSpec.specification(productSearch));
+
+        return productRepository.findAll(spec, pageable)
                 .stream()
                 .map(product -> mapper.map(product, ProductResDto.class))
                 .toList();
@@ -86,4 +106,6 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
         return mapper.map(product, ProductResDto.class);
     }
+
+
 }

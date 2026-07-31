@@ -3,17 +3,15 @@ package com.abraao.laperfume.model.product;
 import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@NoArgsConstructor @AllArgsConstructor @Builder
+@NoArgsConstructor @AllArgsConstructor @Builder @Getter
 @Data
 public class Product {
 
@@ -27,12 +25,17 @@ public class Product {
     private Integer ml;
     private Double price;
     private Integer quantity;
+    private Double discount;
+    private Integer sold;
+    private Double rated;
+
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @ManyToMany(mappedBy = "products")
-    private List<Profile> profiles;
+    @Builder.Default
+    private List<Profile> profiles =  new ArrayList<>();
 
     public void addProductToProfile(Profile profile) {
         this.profiles.add(profile);
@@ -48,36 +51,19 @@ public class Product {
     @JoinTable(
             name = "prod_categ",
             joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "fragancecategory_id")
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private Set<FragranceCategory> fragranceCategory;
+    @Builder.Default
+    private List<FragranceCategory> fragranceCategories = new ArrayList<>();
 
     public void addFragranceCategory(FragranceCategory fragranceCategory) {
-        this.fragranceCategory.add(fragranceCategory);
+        this.fragranceCategories.add(fragranceCategory);
         fragranceCategory.getProducts().add(this);
     }
 
     public void removeFragranceCategory(FragranceCategory fragranceCategory) {
-        this.fragranceCategory.remove(fragranceCategory);
+        this.fragranceCategories.remove(fragranceCategory);
         fragranceCategory.getProducts().remove(this);
-    }
-
-    @ManyToMany
-    @JoinTable(
-            name = "prod_line",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "fraganceline_id")
-    )
-    private Set<FragranceLine> fragranceLine;
-
-    public void addFragranceLine(FragranceLine fragranceLine) {
-        this.fragranceLine.add(fragranceLine);
-        fragranceLine.getProducts().add(this);
-    }
-
-    public void removeFragranceLine(FragranceLine fragranceLine) {
-        this.fragranceLine.remove(fragranceLine);
-        fragranceLine.getProducts().remove(this);
     }
 
 }
