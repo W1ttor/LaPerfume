@@ -1,16 +1,15 @@
 package com.abraao.laperfume.model.product;
 
-import com.abraao.laperfume.shared.Enum.FragranceOrLine;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Getter
+@Entity @Data
+@Getter @Builder
+@AllArgsConstructor @NoArgsConstructor(force = true)
 public class FragranceCategory {
 
     @Id
@@ -19,8 +18,11 @@ public class FragranceCategory {
 
     private String name;
 
-    private FragranceOrLine fragranceOrLine;
+    @Builder.Default
+    @ManyToMany(mappedBy = "fragranceCategories")
+    private List<Product> products = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "fragranceCategory")
-    private List<Product> products;
+    public void changeName(String newName) {
+        this.name = newName;
+    }
 }

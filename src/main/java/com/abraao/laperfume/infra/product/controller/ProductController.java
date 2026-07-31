@@ -2,7 +2,9 @@ package com.abraao.laperfume.infra.product.controller;
 
 import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
 import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
+import com.abraao.laperfume.infra.product.dto.response.ProductSearch;
 import com.abraao.laperfume.model.product.service.ProductService;
+import com.abraao.laperfume.shared.Enum.EnumOrderByStrategy;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
@@ -27,10 +29,9 @@ public class ProductController {
     public List<ProductResDto> findAll(
             @ParameterObject
             @PageableDefault(page = 0, size = 20) Pageable pageable,
-            @RequestParam(required = false) String name
-
+            ProductSearch productSearch
     ) {
-        return productService.findAllProducts(name ,pageable);
+        return productService.findAllProducts(productSearch, pageable);
     }
 
     @GetMapping("/{id}")
