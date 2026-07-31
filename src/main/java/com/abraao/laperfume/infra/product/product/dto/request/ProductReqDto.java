@@ -1,4 +1,4 @@
-package com.abraao.laperfume.infra.product.dto.request;
+package com.abraao.laperfume.infra.product.product.dto.request;
 
 import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.EnumType;
@@ -18,7 +18,7 @@ public class ProductReqDto {
     @NotBlank @NotNull
     private String description;
 
-    private String image;
+    private String imagePath;
 
     @NotBlank @NotNull
     private Integer ml;

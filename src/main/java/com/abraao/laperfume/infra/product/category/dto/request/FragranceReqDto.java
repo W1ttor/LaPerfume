@@ -1,4 +1,4 @@
-package com.abraao.laperfume.infra.product.dto.request;
+package com.abraao.laperfume.infra.product.category.dto.request;
 
 import lombok.Data;
 

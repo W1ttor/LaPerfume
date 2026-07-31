@@ -1,8 +1,8 @@
 package com.abraao.laperfume.model.product.Specification;
 
-import com.abraao.laperfume.infra.product.dto.response.ProductSearch;
-import com.abraao.laperfume.model.product.FragranceCategory;
-import com.abraao.laperfume.model.product.Product;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductSearch;
+import com.abraao.laperfume.model.product.category.FragranceCategory;
+import com.abraao.laperfume.model.product.product.Product;
 import com.abraao.laperfume.model.product.Specification.strategy.orderBy.OrderByService;
 import com.abraao.laperfume.shared.Enum.EnumOrderByStrategy;
 import jakarta.persistence.criteria.Join;

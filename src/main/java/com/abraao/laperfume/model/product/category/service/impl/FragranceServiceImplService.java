@@ -1,10 +1,10 @@
-package com.abraao.laperfume.model.product.service.impl;
+package com.abraao.laperfume.model.product.category.service.impl;
 
-import com.abraao.laperfume.infra.product.dto.request.FragranceReqDto;
-import com.abraao.laperfume.infra.product.dto.response.FragranceResDto;
-import com.abraao.laperfume.infra.product.repository.FragranceCategoryRepository;
-import com.abraao.laperfume.model.product.FragranceCategory;
-import com.abraao.laperfume.model.product.service.FragranceCategoryService;
+import com.abraao.laperfume.infra.product.category.dto.request.FragranceReqDto;
+import com.abraao.laperfume.infra.product.category.dto.response.FragranceResDto;
+import com.abraao.laperfume.infra.product.category.repository.FragranceCategoryRepository;
+import com.abraao.laperfume.model.product.category.FragranceCategory;
+import com.abraao.laperfume.model.product.category.service.FragranceCategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

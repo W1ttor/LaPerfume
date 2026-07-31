@@ -1,5 +1,6 @@
-package com.abraao.laperfume.model.product;
+package com.abraao.laperfume.model.product.category;
 
+import com.abraao.laperfume.model.product.product.Product;
 import jakarta.persistence.*;
 import lombok.*;
 

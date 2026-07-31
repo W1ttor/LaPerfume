@@ -1,4 +1,4 @@
-package com.abraao.laperfume.infra.product.dto.response;
+package com.abraao.laperfume.infra.product.product.dto.response;
 
 import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.EnumType;
@@ -6,8 +6,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class ProductResDto {
@@ -22,7 +20,7 @@ public class ProductResDto {
     @NotBlank @NotNull
     private String description;
 
-    private String image;
+    private String imagePath;
 
     @NotBlank @NotNull
     private Integer ml;

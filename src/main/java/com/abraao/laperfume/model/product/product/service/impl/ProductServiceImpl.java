@@ -1,15 +1,15 @@
-package com.abraao.laperfume.model.product.service.impl;
+package com.abraao.laperfume.model.product.product.service.impl;
 
-import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
-import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
-import com.abraao.laperfume.infra.product.dto.response.ProductSearch;
-import com.abraao.laperfume.infra.product.repository.ProductRepository;
+import com.abraao.laperfume.infra.product.product.dto.request.ProductReqDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductResDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductSearch;
+import com.abraao.laperfume.infra.product.product.repository.ProductRepository;
 import com.abraao.laperfume.infra.profile.repository.ProfileRepository;
-import com.abraao.laperfume.model.product.FragranceCategory;
-import com.abraao.laperfume.model.product.Product;
+import com.abraao.laperfume.model.product.category.FragranceCategory;
+import com.abraao.laperfume.model.product.product.Product;
 import com.abraao.laperfume.model.product.Specification.ProductSpecImpl;
-import com.abraao.laperfume.model.product.service.FragranceCategoryService;
-import com.abraao.laperfume.model.product.service.ProductService;
+import com.abraao.laperfume.model.product.category.service.FragranceCategoryService;
+import com.abraao.laperfume.model.product.product.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +43,6 @@ public class ProductServiceImpl implements ProductService {
         Product product = Product.builder()
                 .name(productReqDto.getName())
                 .description(productReqDto.getDescription())
-                .image(productReqDto.getImage())
                 .ml(productReqDto.getMl())
                 .price(productReqDto.getPrice())
                 .quantity(productReqDto.getQuantity())

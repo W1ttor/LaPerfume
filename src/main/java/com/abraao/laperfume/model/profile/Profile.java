@@ -1,6 +1,6 @@
 package com.abraao.laperfume.model.profile;
 
-import com.abraao.laperfume.model.product.Product;
+import com.abraao.laperfume.model.product.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

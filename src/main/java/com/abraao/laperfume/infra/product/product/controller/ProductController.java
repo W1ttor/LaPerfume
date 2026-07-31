@@ -1,10 +1,9 @@
-package com.abraao.laperfume.infra.product.controller;
+package com.abraao.laperfume.infra.product.product.controller;
 
-import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
-import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
-import com.abraao.laperfume.infra.product.dto.response.ProductSearch;
-import com.abraao.laperfume.model.product.service.ProductService;
-import com.abraao.laperfume.shared.Enum.EnumOrderByStrategy;
+import com.abraao.laperfume.infra.product.product.dto.request.ProductReqDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductResDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductSearch;
+import com.abraao.laperfume.model.product.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;

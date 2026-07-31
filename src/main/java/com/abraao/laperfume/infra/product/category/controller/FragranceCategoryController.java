@@ -1,8 +1,8 @@
-package com.abraao.laperfume.infra.product.controller;
+package com.abraao.laperfume.infra.product.category.controller;
 
-import com.abraao.laperfume.infra.product.dto.request.FragranceReqDto;
-import com.abraao.laperfume.infra.product.dto.response.FragranceResDto;
-import com.abraao.laperfume.model.product.service.FragranceCategoryService;
+import com.abraao.laperfume.infra.product.category.dto.request.FragranceReqDto;
+import com.abraao.laperfume.infra.product.category.dto.response.FragranceResDto;
+import com.abraao.laperfume.model.product.category.service.FragranceCategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

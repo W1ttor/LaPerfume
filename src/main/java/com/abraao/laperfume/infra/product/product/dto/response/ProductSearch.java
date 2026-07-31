@@ -1,4 +1,4 @@
-package com.abraao.laperfume.infra.product.dto.response;
+package com.abraao.laperfume.infra.product.product.dto.response;
 
 import com.abraao.laperfume.shared.Enum.EnumOrderByStrategy;
 import lombok.AllArgsConstructor;

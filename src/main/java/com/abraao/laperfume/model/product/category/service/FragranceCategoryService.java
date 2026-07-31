@@ -1,7 +1,7 @@
-package com.abraao.laperfume.model.product.service;
+package com.abraao.laperfume.model.product.category.service;
 
-import com.abraao.laperfume.infra.product.dto.request.FragranceReqDto;
-import com.abraao.laperfume.infra.product.dto.response.FragranceResDto;
+import com.abraao.laperfume.infra.product.category.dto.request.FragranceReqDto;
+import com.abraao.laperfume.infra.product.category.dto.response.FragranceResDto;
 
 import java.util.List;
 

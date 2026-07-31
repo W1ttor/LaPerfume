@@ -1,11 +1,9 @@
-package com.abraao.laperfume.model.product.service;
+package com.abraao.laperfume.model.product.product.service;
 
-import com.abraao.laperfume.infra.product.dto.request.ProductReqDto;
-import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
-import com.abraao.laperfume.infra.product.dto.response.ProductSearch;
-import com.abraao.laperfume.shared.Enum.EnumOrderByStrategy;
+import com.abraao.laperfume.infra.product.product.dto.request.ProductReqDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductResDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductSearch;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 

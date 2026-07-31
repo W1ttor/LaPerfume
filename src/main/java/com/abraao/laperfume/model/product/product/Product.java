@@ -1,5 +1,6 @@
-package com.abraao.laperfume.model.product;
+package com.abraao.laperfume.model.product.product;
 
+import com.abraao.laperfume.model.product.category.FragranceCategory;
 import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.*;
@@ -7,7 +8,6 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -21,7 +21,7 @@ public class Product {
 
     private String name;
     private String description;
-    private String image;
+    private String imagePath;
     private Integer ml;
     private Double price;
     private Integer quantity;
@@ -36,6 +36,7 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     @Builder.Default
     private List<Profile> profiles =  new ArrayList<>();
+
 
     public void addProductToProfile(Profile profile) {
         this.profiles.add(profile);
