@@ -1,6 +1,6 @@
 package com.abraao.laperfume.infra.profile.controller;
 
-import com.abraao.laperfume.infra.product.dto.response.ProductResDto;
+import com.abraao.laperfume.infra.product.product.dto.response.ProductResDto;
 import com.abraao.laperfume.infra.profile.dto.request.ProfileReqDto;
 import com.abraao.laperfume.infra.profile.dto.response.ProfileResDto;
 import com.abraao.laperfume.model.profile.Profile;
