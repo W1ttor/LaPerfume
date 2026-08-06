@@ -1,6 +1,7 @@
 package com.abraao.laperfume.model.profile;
 
 import com.abraao.laperfume.model.product.product.Product;
+import com.abraao.laperfume.model.product.rating.Rating;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -49,7 +51,25 @@ public class Profile {
             joinColumns = @JoinColumn(name = "profile_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<Product> products;
+    @Builder.Default
+    private List<Product> products = new ArrayList<>();
+
+
+    @OneToMany
+    @JoinTable(
+            name = "rating_profile",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "rating_id")
+    )
+    @Builder.Default
+    private List<Rating> ratings =  new ArrayList<>();
+
+    public List<Rating> getRatings() {
+        if (ratings == null) {
+            ratings = new ArrayList<>();
+        }
+        return ratings;
+    }
 
     public Profile() {
 

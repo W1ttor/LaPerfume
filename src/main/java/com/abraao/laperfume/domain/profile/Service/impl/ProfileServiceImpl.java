@@ -4,6 +4,7 @@ import com.abraao.laperfume.infra.product.product.dto.response.ProductResDto;
 import com.abraao.laperfume.infra.profile.dto.request.ProfileReqDto;
 import com.abraao.laperfume.infra.profile.dto.response.ProfileResDto;
 import com.abraao.laperfume.infra.profile.repository.ProfileRepository;
+import com.abraao.laperfume.model.product.rating.Rating;
 import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.model.profile.Service.ProfileService;
 import org.modelmapper.ModelMapper;
@@ -86,6 +87,14 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findById(id)
                 .orElseThrow();
         profile.setDeleted(true);
+        profileRepository.save(profile);
+    }
+
+    @Override
+    public void addRating(String id, Rating rating) {
+        Profile profile = profileRepository.findById(id)
+                .orElseThrow();
+        profile.getRatings().add(rating);
         profileRepository.save(profile);
     }
 }

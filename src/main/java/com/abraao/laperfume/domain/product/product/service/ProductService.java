@@ -16,7 +16,6 @@ public interface ProductService {
 
     ProductResDto addProductToProfile(String id, String idProduct);
 
-
     //Fragrance
 
 }

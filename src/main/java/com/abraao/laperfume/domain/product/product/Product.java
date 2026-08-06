@@ -1,6 +1,7 @@
 package com.abraao.laperfume.model.product.product;
 
 import com.abraao.laperfume.model.product.category.FragranceCategory;
+import com.abraao.laperfume.model.product.rating.Rating;
 import com.abraao.laperfume.model.profile.Profile;
 import com.abraao.laperfume.shared.Enum.Gender;
 import jakarta.persistence.*;
@@ -66,5 +67,14 @@ public class Product {
         this.fragranceCategories.remove(fragranceCategory);
         fragranceCategory.getProducts().remove(this);
     }
+
+    @ManyToMany()
+    @JoinTable(
+            name = "ratings_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "rating_id")
+    )
+    @Builder.Default
+    private List<Rating> ratings = new ArrayList<>();
 
 }
