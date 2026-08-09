@@ -5,13 +5,17 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.*;
 
-@Data
+import java.util.UUID;
+
+@Getter @Setter
+@NoArgsConstructor(force = true)
+@Builder
 public class ProductResDto {
 
     @NotNull
-    private String id;
+    private UUID id;
 
     @NotBlank
     @NotNull
@@ -34,4 +38,15 @@ public class ProductResDto {
     @Enumerated(EnumType.STRING)
     @NotBlank @NotNull
     private Gender gender;
+
+    public ProductResDto(UUID id, String name, String description, String imagePath, Integer ml, Double price, Integer quantity, Gender gender) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imagePath = imagePath;
+        this.ml = ml;
+        this.price = price;
+        this.quantity = quantity;
+        this.gender = gender;
+    }
 }
